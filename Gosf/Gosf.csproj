@@ -10,6 +10,7 @@
 		<PackageProjectUrl>https://github.com/gaoshang212/gsof</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/gaoshang212/gsof.git</RepositoryUrl>
 		<AssemblyVersion>0.3.0</AssemblyVersion>
+		<VersionPrefix>0.3.0</VersionPrefix>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
