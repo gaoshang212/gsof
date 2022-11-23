@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Gsof.WinApi
+namespace Gsof.Windows.WinApi
 {
     [Flags]
     public enum ThreadExecutionState : uint

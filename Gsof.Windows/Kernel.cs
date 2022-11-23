@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Gsof.Windows.WinApi;
 
-namespace Gsof.WinApi
+namespace Gsof.Windows
 {
     public class Kernel
     {
