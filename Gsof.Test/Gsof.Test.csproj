@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gosf\Gosf.csproj" />
+    <ProjectReference Include="..\Gsof\Gsof.csproj" />
   </ItemGroup>
 
 </Project>
