@@ -1,4 +1,4 @@
-# Gosf
+# Gsof
 * Gsof 种类型的扩展
 * Gsof.Windows 
 
