@@ -3,7 +3,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Gsof.Shared.Extensions
+namespace Gsof.Extensions
 {
     /// <summary>
     /// IntPtr 扩展

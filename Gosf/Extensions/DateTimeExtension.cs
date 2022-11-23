@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Gsof.Shared.Extensions
+namespace Gsof.Extensions
 {
     /// <summary>
     /// DateTime 扩展

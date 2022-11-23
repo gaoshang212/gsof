@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Gsof.Shared.Extensions
+namespace Gsof.Extensions
 {
     /// <summary>
     /// 枚举类型扩展

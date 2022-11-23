@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
 
-namespace Gsof.Shared.Extensions
+namespace Gsof.Extensions
 {
     public static class ReflectionExtension
     {

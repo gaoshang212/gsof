@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Gsof.Shared.Extensions
+namespace Gsof.Extensions
 {
     public static class TypeExtension
     {

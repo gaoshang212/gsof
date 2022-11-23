@@ -1,4 +1,4 @@
-﻿namespace Gsof.Shared.Extensions
+﻿namespace Gsof.Extensions
 {
     /// <summary>
     /// 颜色空间转换
