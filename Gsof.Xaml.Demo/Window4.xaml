@@ -1,0 +1,48 @@
+﻿<Window x:Class="Gsof.Xaml.Demo.Window4"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gsof.Xaml.Demo"
+        mc:Ignorable="d"
+        Title="Window4"
+        Height="300"
+        Width="300"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:gsof="http://gsof.top">
+    <Grid>
+        <StackPanel>
+            <Grid x:Name="_inputGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBox Text="{Binding Path=A,Mode=TwoWay,UpdateSourceTrigger=Explicit}" />
+                <TextBox Grid.Row="1"
+                         Text="{Binding Path=B,Mode=TwoWay,UpdateSourceTrigger=Explicit}" />
+                <TextBox Grid.Row="2"
+                         Text="{Binding Path=C,Mode=TwoWay,UpdateSourceTrigger=Explicit}" />
+                <Grid Grid.Row="3">
+                    <TextBox Text="{Binding Path=A,Mode=TwoWay,UpdateSourceTrigger=Explicit}" />
+                    <TextBox Text="{Binding Path=B,Mode=TwoWay,UpdateSourceTrigger=Explicit}" />
+                    <TextBox Text="{Binding Path=C,Mode=TwoWay,UpdateSourceTrigger=Explicit}" />
+                </Grid>
+            </Grid>
+
+            <TextBlock x:Name="_tb"
+                       Text="aa" />
+
+            <Image />
+
+            <Button Content="Update">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <gsof:UpdateSourceTrigger Target="{Binding ElementName=_inputGrid}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

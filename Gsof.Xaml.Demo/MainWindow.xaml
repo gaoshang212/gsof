@@ -1,0 +1,93 @@
+﻿<Window x:Class="Gsof.Xaml.Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:gsof="http://gsof.top"
+        xmlns:local="clr-namespace:Gsof.Xaml.Demo"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="350"
+        Width="525"
+        WindowStyle="None"
+        AllowsTransparency="False"
+        Background="White"
+        Padding="0"
+        ResizeMode="NoResize">
+    <Window.Resources>
+
+        <Style x:Key="ClockStyle"
+               TargetType="{x:Type gsof:Clock}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type gsof:Clock}">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="{Binding Now, RelativeSource={RelativeSource TemplatedParent}, StringFormat=\{0:HH:mm\}}"
+                                           FontFamily="{TemplateBinding FontFamily}"
+                                           HorizontalAlignment="Center" />
+                                <TextBlock Grid.Row="1"
+                                           Text="{Binding Now, RelativeSource={RelativeSource TemplatedParent}, StringFormat=\{0:MM月dd日 dddd\}, ConverterCulture=zh-cn}"
+                                           FontFamily="{TemplateBinding FontFamily}" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="Transparent"
+          gsof:WindowAttached.DragMoveable="True">
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Top">
+            <TextBlock Foreground="{DynamicResource TitleBrush}">Titile</TextBlock>
+            <Button Content="Chagned"
+                    Click="ButtonBase_OnClick" />
+            <CheckBox Content="Max"
+                      gsof:WindowAttached.Maximize="True" />
+
+            <Button Content="Drga Test">
+
+            </Button>
+
+            <!--<gsof:NumericUpDown Value="0" Maximum="4" />-->
+
+            <TextBox />
+
+        </StackPanel>
+
+        <ToggleButton x:Name="_btnOpen"
+                      Width="100"
+                      Height="27"
+                      IsChecked="{Binding ElementName=_popup, Path=IsOpen}"
+                      gsof:WindowAttached.DragMoveable="True" >
+        </ToggleButton>
+
+        <Button  Width="100"
+                 Height="27"
+                 HorizontalAlignment="Left"
+                 Click="Windows1OnClick" />
+
+        <Popup x:Name="_popup"
+               Width="500"
+               Height="500"
+               PlacementTarget="{Binding ElementName=_btnOpen}"
+               gsof:PopupAttached.AllowFollow="True">
+            <Border Background="BlueViolet"></Border>
+        </Popup>
+
+        <gsof:Clock HorizontalAlignment="Right"
+                    Style="{DynamicResource ClockStyle}" />
+
+        <gsof:NumericUpDown Height="27"
+                            Maximum="4"
+                            Value="{Binding Value,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></gsof:NumericUpDown>
+    </Grid>
+</Window>

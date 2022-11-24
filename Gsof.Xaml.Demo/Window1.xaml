@@ -1,0 +1,31 @@
+﻿<Window x:Class="Gsof.Xaml.Demo.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gsof.Xaml.Demo"
+        xmlns:gsof="http://gsof.top"
+        mc:Ignorable="d"
+        Title="Window1"
+        Height="300"
+        Width="300">
+    <Grid>
+        <gsof:FlipView x:Name="_flipView">
+            <gsof:FlipViewItem>
+                <Border Background="BlueViolet" />
+            </gsof:FlipViewItem>
+            <gsof:FlipViewItem>
+                <Border Background="CadetBlue" />
+            </gsof:FlipViewItem>
+            <gsof:FlipViewItem>
+                <Border Background="CornflowerBlue" />
+            </gsof:FlipViewItem>
+        </gsof:FlipView>
+
+        <StackPanel Orientation="Horizontal" Height="27" VerticalAlignment="Bottom" >
+            <Button Click="onPreviousClick"  >Previous</Button>
+            <Button Click="onNextClick"  >Next</Button>
+        </StackPanel>
+
+    </Grid>
+</Window>

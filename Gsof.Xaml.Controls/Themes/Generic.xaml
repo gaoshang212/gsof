@@ -1,0 +1,10 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Gsof.Xaml.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Gsof.Xaml.Controls;component/Themes/Clock.xaml" />
+        <ResourceDictionary Source="/Gsof.Xaml.Controls;component/Themes/NumericUpDown.xaml" />
+        <ResourceDictionary Source="/Gsof.Xaml.Controls;component/Themes/FilpView.xaml" />
+        <ResourceDictionary Source="/Gsof.Xaml.Controls;component/Themes/Flyout.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
