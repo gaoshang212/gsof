@@ -44,7 +44,6 @@ using (dynamic native = NativeFactory.Create(@"../../libtest.dll"))
 - 缺点：如果函数较多，委托定义较为繁琐
 
 ```csharp
-
 [NativeFuncton("test")]
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 delegate int Test(int p_sleep);
@@ -66,3 +65,8 @@ public void DelegateFunction()
     Assert.AreEqual(input, result);
 }
 ```
+
+## Todo List
+
+- [ ] 支持自动识别 x86 和 x64 目录
+- [ ] 支持 Linux 
