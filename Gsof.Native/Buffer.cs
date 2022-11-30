@@ -126,6 +126,16 @@ namespace Gsof.Native
             CopyTo(buffer, index, this.Length - index);
         }
 
+        public T ToStruct<T>()
+        {
+            return this.ToStruct<T>();
+        }
+
+        public byte[] ToBytes()
+        {
+
+        }
+
         #endregion
 
 
