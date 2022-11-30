@@ -25,6 +25,12 @@ namespace Gsof.Native
             Init(size);
         }
 
+        public Buffer(IntPtr ptr, int size)
+        {
+            this.Point = ptr;
+            this.Length = size;
+        }
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -264,5 +270,10 @@ namespace Gsof.Native
         #endregion
 
 
+        #region implicit
+
+        public static implicit operator IntPtr(Buffer buffer) => buffer.Point;
+
+        #endregion
     }
 }
