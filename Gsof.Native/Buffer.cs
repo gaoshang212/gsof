@@ -55,6 +55,13 @@ namespace Gsof.Native
 
         #region Public
 
+        public byte ReadByte(int pos)
+        {
+            CheckPointZero();
+
+            return Marshal.ReadByte(this.Point, pos);
+        }
+
         public byte[] ReadBytes(int pos, int length)
         {
             CheckPointZero();
@@ -134,7 +141,7 @@ namespace Gsof.Native
 
         public T ToStruct<T>()
         {
-            return this.ToStruct<T>();
+            return this.GetStruct<T>();
         }
 
         public byte[] ToBytes()
