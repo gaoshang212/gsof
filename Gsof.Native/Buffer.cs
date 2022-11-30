@@ -133,7 +133,7 @@ namespace Gsof.Native
 
         public byte[] ToBytes()
         {
-
+            return this.ReadBytes();
         }
 
         #endregion
