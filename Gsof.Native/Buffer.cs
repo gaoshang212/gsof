@@ -72,13 +72,19 @@ namespace Gsof.Native
             }
             var buffer = new byte[length];
 
-            Marshal.Copy(_point, buffer, pos, length);
+            Marshal.Copy(_point + pos, buffer, 0, length);
             return buffer;
         }
 
         public byte[] ReadBytes(int pos = 0)
         {
             return ReadBytes(pos, this.Length - pos);
+        }
+
+        public short ReadInt16(int offset = 0)
+        {
+            CheckPointZero();
+            return Marshal.ReadInt16(Point, offset);
         }
 
         public int ReadInt32(int offset = 0)
