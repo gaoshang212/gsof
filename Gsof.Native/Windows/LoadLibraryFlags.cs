@@ -1,7 +1,6 @@
-﻿// ReSharper disable InconsistentNaming
-using System;
+﻿using System;
 
-namespace Gsof.Native
+namespace Gsof.Native.Windows
 {
     [Flags]
     public enum LoadLibraryFlags : uint

@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using Gsof.Dynamic;
 using Gsof.Emit;
 using Gsof.Extensions;
+using Gsof.Native.Windows;
 
 namespace Gsof.Native
 {
@@ -162,7 +163,7 @@ namespace Gsof.Native
 
             var fileanme = Path.GetFullPath(FileName);
 
-            var tmpHandle = NativeMethods.LoadLibraryEx(fileanme, IntPtr.Zero, LoadLibraryFlags.LOAD_WITH_ALTERED_SEARCH_PATH);
+            var tmpHandle = NativeMethods.LoadLibrary(fileanme);
             if (tmpHandle == IntPtr.Zero)
             {
                 throw new Win32Exception(Marshal.GetLastWin32Error());
