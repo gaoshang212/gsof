@@ -1,6 +1,8 @@
 # Gsof
 * Gsof 种类型的扩展
-* Gsof.Windows 
+* Gsof.Windows
+* Gsof.Native 动态加载动态库工具类
+* Gsof.Xaml* wpf Xaml 的一些扩展、控件和工具。
 
 ## Gsof 库
 C# 各种类型的扩展
@@ -12,3 +14,6 @@ C# 各种类型的扩展
 
 ## Gsof.Windows 库
 
+## Gsof.Xaml*
+新地址：<https://github.com/gaoshang212/Gsof.Xaml>
+> 为方便在 Linux 测试，把 Gsof.Xaml 相关项目拆分到独立的仓库中。
