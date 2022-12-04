@@ -1,7 +1,7 @@
 # Gsof
 * Gsof 种类型的扩展
 * Gsof.Windows
-* Gsof.Native 动态加载动态库工具类
+* Gsof.Native 加载 `动态库` 工具类
 * Gsof.Xaml* wpf Xaml 的一些扩展、控件和工具。
 
 ## Gsof 库
