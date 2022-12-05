@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
@@ -9,14 +10,13 @@ using System.Runtime.InteropServices;
 using Gsof.Dynamic;
 using Gsof.Emit;
 using Gsof.Extensions;
-using Gsof.Native.Windows;
 
 namespace Gsof.Native
 {
     public class Native : SafeHandle, IDynamicMetaObjectProvider, INative
     {
-        private DelegateBuilder _delegateBuilder;
-        private readonly IDisposable _disposable;
+        private DelegateBuilder? _delegateBuilder;
+        private readonly IDisposable? _disposable;
         private readonly CallingConvention _calling = CallingConvention.Cdecl;
 
         public string FileName { get; private set; }
@@ -25,13 +25,12 @@ namespace Gsof.Native
 
         internal Native(string p_filename) : base(IntPtr.Zero, true)
         {
-            FileName = p_filename;
+            FileName = this.CreateFilePath(p_filename);
             LoadLibrary();
         }
 
-        internal Native(string p_filename, IDisposable p_disposable) : base(IntPtr.Zero, true)
+        internal Native(string p_filename, IDisposable p_disposable) : this(p_filename)
         {
-            FileName = p_filename;
             _disposable = p_disposable;
             LoadLibrary();
         }
@@ -146,6 +145,21 @@ namespace Gsof.Native
         }
 
         #region Private Methods
+
+        private string CreateFilePath(string filepath)
+        {
+            var path = Path.GetFullPath(filepath);
+            var dir = Path.GetDirectoryName(path);
+            var filename = Path.GetFileName(filepath);
+            string real = Path.Combine(dir, Environment.Is64BitProcess ? "x64" : "x86", filename);
+
+            if (File.Exists(real))
+            {
+                return real;
+            }
+
+            return filepath;
+        }
 
         private void LoadLibrary()
         {
@@ -286,7 +300,7 @@ namespace Gsof.Native
 
         #region Dynamic
 
-        private DynamicNative _dynamicNative;
+        private DynamicNative? _dynamicNative;
 
         public DynamicMetaObject GetMetaObject(Expression parameter)
         {

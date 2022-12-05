@@ -7,7 +7,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,6 +25,16 @@
     <None Update="libtest.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Windows\x64\Gsof.Test.Lib.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Windows\x86\Gsof.Test.Lib.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Windows\x64\" />
   </ItemGroup>
 
 </Project>

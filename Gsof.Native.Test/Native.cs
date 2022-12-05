@@ -9,14 +9,19 @@ namespace Gsof.Native.Test
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         delegate int Test(int p_sleep);
 
+        private static string Dir = NativeMethods.IsWin ? "Windows" : "Linux";
+
+        private static string Filename = Path.Combine(Dir, "Gsof.Test.Lib.dll");
+
+
         [TestMethod]
         public void DelegateFunction()
         {
             int input = 0;
             int result = -1;
-            using (var native = NativeFactory.Create(@"./libtest.dll"))
+            using (var native = NativeFactory.Create(Filename))
             {
-                using (var native1 = NativeFactory.Create(@"./libtest.dll"))
+                using (var native1 = NativeFactory.Create(Filename))
                 {
                     var result1 = native1.Invoke<int, Test>(input);
 
@@ -34,7 +39,7 @@ namespace Gsof.Native.Test
         {
             int input = 0;
             int result = -1;
-            using (var native = NativeFactory.Create(@"./libtest.dll"))
+            using (var native = NativeFactory.Create(Filename))
             {
                 result = native.Invoke<int>("test", input);
             }
@@ -48,7 +53,7 @@ namespace Gsof.Native.Test
         {
             int input = 0;
             int result = -1;
-            using (dynamic native = NativeFactory.Create(@"./libtest.dll"))
+            using (dynamic native = NativeFactory.Create(Filename))
             {
                 result = native.test<int>(input);
             }
@@ -60,7 +65,7 @@ namespace Gsof.Native.Test
         [TestMethod]
         public void CreateTest()
         {
-            string input = @"./libtest.dll";
+            string input = Filename;
 
             try
             {
@@ -78,7 +83,7 @@ namespace Gsof.Native.Test
         [TestMethod]
         public void CallingConventionFunction()
         {
-            string input = @"./libtest.dll";
+            string input = Filename;
 
             try
             {
