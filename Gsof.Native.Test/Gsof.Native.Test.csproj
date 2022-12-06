@@ -25,6 +25,9 @@
     <None Update="libtest.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Linux\x64\libGsof.Test.Lib.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Windows\x64\Gsof.Test.Lib.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

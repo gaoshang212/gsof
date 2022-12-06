@@ -9,9 +9,11 @@ namespace Gsof.Native.Test
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         delegate int Test(int p_sleep);
 
+        private static string DllName = NativeMethods.IsWin ? "Gsof.Test.Lib.dll" : "libGsof.Test.Lib.so";
+
         private static string Dir = NativeMethods.IsWin ? "Windows" : "Linux";
 
-        private static string Filename = Path.Combine(Dir, "Gsof.Test.Lib.dll");
+        private static string Filename = Path.Combine(Dir, DllName);
 
 
         [TestMethod]
