@@ -1,7 +1,7 @@
 ﻿# Gsof.Native
 * 支持动态加载 动态库
 * 支持自动优先识别指定 `动态库` 目录面的 `x86` 或 `x64` 目录。
-* 支持 `Linux` ，未测试。
+* 支持 `Linux` ，在 WSL Ubuntu 中测试。
 * 支持 `Buffer` 类，简化内存操作。
 
 ## 使用
@@ -73,4 +73,4 @@ public void DelegateFunction()
 ## Todo List
 
 - [x] 支持自动识别 x86 和 x64 目录
-- [ ] 支持 Linux 
+- [x] 支持 Linux 
