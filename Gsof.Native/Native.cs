@@ -60,7 +60,7 @@ namespace Gsof.Native
             return HasFunctionDelegate<T>(attribute.FunctionName);
         }
 
-        public TResult Invoke<TResult, T>(params object[] p_params)
+        public TResult? Invoke<TResult, T>(params object[] p_params)
         {
             if (IsInvalid)
             {
@@ -72,22 +72,22 @@ namespace Gsof.Native
             return Invoke<TResult>(attribute.FunctionName, p_params);
         }
 
-        public TResult Invoke<TResult>(string p_funName, params object[] p_params)
+        public TResult? Invoke<TResult>(string p_funName, params object[] p_params)
         {
             return Invoke<TResult>(p_funName, _calling, p_params);
         }
 
-        public TResult Invoke<TResult>(string p_funName, CallingConvention p_calling, params object[] p_params)
+        public TResult? Invoke<TResult>(string p_funName, CallingConvention p_calling, params object[] p_params)
         {
-            return (TResult)Invoke(p_funName, p_calling, typeof(TResult), p_params);
+            return (TResult?)Invoke(p_funName, p_calling, typeof(TResult), p_params);
         }
 
-        public object Invoke(string p_funName, Type p_returnType, params object[] p_params)
+        public object? Invoke(string p_funName, Type? p_returnType, params object?[]? p_params)
         {
             return Invoke(p_funName, _calling, p_returnType, p_params);
         }
 
-        public object Invoke(string p_funName, CallingConvention p_calling, Type p_returnType, params object[] p_params)
+        public object? Invoke(string p_funName, CallingConvention p_calling, Type? p_returnType, params object?[]? p_params)
         {
             if (IsInvalid)
             {
@@ -99,7 +99,7 @@ namespace Gsof.Native
             var dg = GetFunctionDelegate(type, p_funName);
             if (dg == null)
             {
-                return p_returnType == null ? null : p_returnType.CreateInstance();
+                return p_returnType?.CreateInstance();
             }
 
             return dg.DynamicInvoke(p_params);
@@ -150,7 +150,7 @@ namespace Gsof.Native
         private string CreateFilePath(string filepath)
         {
             var path = Path.GetFullPath(filepath);
-            var dir = Path.GetDirectoryName(path);
+            var dir = Path.GetDirectoryName(path) ?? "";
             var filename = Path.GetFileName(filepath);
 
             var result = filepath;
@@ -168,7 +168,7 @@ namespace Gsof.Native
                     break;
                 }
 
-                result = CreateLibPath(dir, filename);
+                result = CreateLibPath(dir, filename!);
                 if (result is not null)
                 {
                     break;
@@ -281,7 +281,7 @@ namespace Gsof.Native
             return GetFunctionDelegate(typeof(T), p_funName);
         }
 
-        private Delegate GetFunctionDelegate(Type p_type, string p_funName)
+        private Delegate GetFunctionDelegate(Type? p_type, string p_funName)
         {
             if (IsInvalid)
             {
@@ -357,10 +357,10 @@ namespace Gsof.Native
             return _delegateBuilder ?? (_delegateBuilder = new DelegateBuilder());
         }
 
-        private Type CreateDelegateType(object[] p_params, Type p_retrunType, CallingConvention p_calling)
+        private Type? CreateDelegateType(object[]? p_params, Type? p_retrunType, CallingConvention p_calling)
         {
             var builder = GetDelegateBuilder();
-            var type = builder.CreateDelegateBySingle(p_params.GetTypes(), p_retrunType, CreateCustomAttributeBuilderFunc(p_calling));
+            var type = builder.CreateDelegateBySingle(p_params?.GetTypes(), p_retrunType, CreateCustomAttributeBuilderFunc(p_calling));
             return type;
         }
 

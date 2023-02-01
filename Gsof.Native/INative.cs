@@ -28,7 +28,7 @@ namespace Gsof.Native
         /// <typeparam name="TDelegate">函数对应的委托类型</typeparam>
         /// <param name="p_params">函数传参</param>
         /// <returns></returns>
-        TResult Invoke<TResult, TDelegate>(params object[] p_params);
+        TResult? Invoke<TResult, TDelegate>(params object[] p_params);
 
         /// <summary>
         /// 函数名调用
@@ -37,7 +37,7 @@ namespace Gsof.Native
         /// <param name="p_funName">函数名</param>
         /// <param name="p_params">函数传参</param>
         /// <returns></returns>
-        TResult Invoke<TResult>(string p_funName, params object[] p_params);
+        TResult? Invoke<TResult>(string p_funName, params object[] p_params);
 
         /// <summary>
         /// 函数名调用
@@ -47,7 +47,7 @@ namespace Gsof.Native
         /// <param name="p_calling">调用转换方式（同PInvoke CallingConvention）</param>
         /// <param name="p_params">函数传参</param>
         /// <returns></returns>
-        TResult Invoke<TResult>(string p_funName, CallingConvention p_calling, params object[] p_params);
+        TResult? Invoke<TResult>(string p_funName, CallingConvention p_calling, params object[] p_params);
 
         /// <summary>
         /// 函数名调用(非泛型)
@@ -56,7 +56,7 @@ namespace Gsof.Native
         /// <param name="p_retrunType">返回值类型</param>
         /// <param name="p_params">函数传参</param>
         /// <returns></returns>
-        object Invoke(string p_funName, Type p_retrunType, params object[] p_params);
+        object? Invoke(string p_funName, Type? p_retrunType, params object?[]? p_params);
 
         /// <summary>
         /// 函数委托调用方式

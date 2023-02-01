@@ -24,13 +24,17 @@ namespace Gsof.Native
             }
         }
 
+#if NET5_0_OR_GREATER
+        public override bool TryInvokeMember(InvokeMemberBinder binder, object?[]? p_args, out object result)
+#else
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] p_args, out object result)
+#endif
         {
             var csharpBinder =
                 binder.GetType().GetInterface("Microsoft.CSharp.RuntimeBinder.ICSharpInvokeOrInvokeMemberBinder");
-            var typeArgs = csharpBinder.GetProperty("TypeArguments").GetValue(binder, null) as IList<Type>;
+            var typeArgs = csharpBinder?.GetProperty("TypeArguments")?.GetValue(binder, null) as IList<Type>;
 
-            Type retrunType = null;
+            Type? retrunType = null;
             if (typeArgs != null && typeArgs.Any())
             {
                 retrunType = typeArgs.First();

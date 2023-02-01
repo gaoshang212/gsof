@@ -15,7 +15,7 @@ namespace Gsof.Emit
         private const string DefaultModuleName = "Default.Delegates.DynamicDelegate";
         //private const string DefaultDllName = DefaultAssemblyName + ".dll";
 
-        private Dictionary<string, Type> _dic = new Dictionary<string, Type>();
+        private Dictionary<string, Type?> _dic = new Dictionary<string, Type?>();
 
         private ModuleBuilder? _moduleBuilder;
 
@@ -45,7 +45,7 @@ namespace Gsof.Emit
             return _moduleBuilder;
         }
 
-        public Type CreateDelegate(Type[] p_paramTypes, Type p_retrunType, Func<CustomAttributeBuilder[]> p_func)
+        public Type? CreateDelegate(Type[] p_paramTypes, Type p_retrunType, Func<CustomAttributeBuilder[]> p_func)
         {
             var paramTypes = p_paramTypes;
             var retrunType = p_retrunType;
@@ -55,7 +55,7 @@ namespace Gsof.Emit
             return InternalCreateDelegate(md5, paramTypes, retrunType, p_func);
         }
 
-        public Type InternalCreateDelegate(string p_sign, Type[] p_paramTypes, Type p_retrunType, Func<CustomAttributeBuilder[]> p_func)
+        public Type? InternalCreateDelegate(string p_sign, Type[]? p_paramTypes, Type? p_retrunType, Func<CustomAttributeBuilder[]> p_func)
         {
             var paramTypes = p_paramTypes;
             var retrunType = p_retrunType;
@@ -68,7 +68,7 @@ namespace Gsof.Emit
             return InternalCreateDelegate(paramTypes, retrunType, p_func);
         }
 
-        protected Type InternalCreateDelegate(Type[] p_paramTypes, Type p_retrunType, Func<CustomAttributeBuilder[]> p_func)
+        protected Type? InternalCreateDelegate(Type[]? p_paramTypes, Type? p_retrunType, Func<CustomAttributeBuilder[]> p_func)
         {
             var mbuilder = _moduleBuilder;
             if (mbuilder == null)
@@ -96,9 +96,9 @@ namespace Gsof.Emit
             return delegateType;
         }
 
-        public Type CreateDelegateBySingle(Type[] p_paramTypes, Type p_retrunType, Func<CustomAttributeBuilder[]> p_func)
+        public Type? CreateDelegateBySingle(Type[]? p_paramTypes, Type? p_retrunType, Func<CustomAttributeBuilder[]> p_func)
         {
-            var paramTypes = p_paramTypes;
+            var paramTypes = p_paramTypes ?? new Type[0];
             var retrunType = p_retrunType;
 
             var md5 = CreateSign(paramTypes, retrunType);
@@ -119,7 +119,7 @@ namespace Gsof.Emit
             return _dic.TryGetValue(p_sign, out _);
         }
 
-        private string CreateSign(Type[] p_paramTypes, Type p_retrunType)
+        private string CreateSign(Type?[] p_paramTypes, Type? p_retrunType)
         {
             var paramTypes = p_paramTypes;
             var retrunType = p_retrunType;
@@ -127,13 +127,13 @@ namespace Gsof.Emit
             var paramters = paramTypes;
             if (p_retrunType != null)
             {
-                paramters = new Type[paramTypes.Length + 1];
+                paramters = new Type?[paramTypes.Length + 1];
                 paramTypes.CopyTo(paramters, 0);
 
                 paramters[paramTypes.Length] = retrunType;
             }
 
-            var prstring = string.Join("", paramters.Select(i => i.ToString()));
+            var prstring = string.Join("", paramters.Select(i => i?.ToString()));
             var md5 = Encoding.UTF8.GetBytes(prstring).ToMd5().ToHex();
 
             return md5;
