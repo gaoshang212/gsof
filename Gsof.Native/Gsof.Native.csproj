@@ -9,8 +9,8 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageProjectUrl>https://github.com/gaoshang212/gsof</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/gaoshang212/gsof.git</RepositoryUrl>
-		<AssemblyVersion>0.3.0</AssemblyVersion>
-		<VersionPrefix>0.3.0</VersionPrefix>
+		<AssemblyVersion>0.4.0</AssemblyVersion>
+		<VersionPrefix>0.4.0</VersionPrefix>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
