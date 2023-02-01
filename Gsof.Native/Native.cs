@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using Gsof.Dynamic;
 using Gsof.Emit;
 using Gsof.Extensions;
+using Gsof.Native.Library;
 
 namespace Gsof.Native
 {
@@ -151,6 +152,7 @@ namespace Gsof.Native
             var path = Path.GetFullPath(filepath);
             var dir = Path.GetDirectoryName(path);
             var filename = Path.GetFileName(filepath);
+
             string real = Path.Combine(dir, Environment.Is64BitProcess ? "x64" : "x86", filename);
 
             if (File.Exists(real))
@@ -179,7 +181,7 @@ namespace Gsof.Native
 
             var fileanme = Path.GetFullPath(FileName);
 
-            var tmpHandle = NativeMethods.LoadLibrary(fileanme);
+            var tmpHandle = NativeLoader.Instance.dlopen(fileanme);
             if (tmpHandle == IntPtr.Zero)
             {
                 throw new Win32Exception(Marshal.GetLastWin32Error());
@@ -211,7 +213,7 @@ namespace Gsof.Native
                 throw new ArgumentException("The T is not a Delegate");
             }
 
-            var address = NativeMethods.GetProcAddress(this.handle, p_funName);
+            var address = NativeLoader.Instance.dlsym(this.handle, p_funName);
 
             if (address == IntPtr.Zero)
             {
@@ -246,7 +248,7 @@ namespace Gsof.Native
                 throw new ArgumentException("The T is not a Delegate");
             }
 
-            var address = NativeMethods.GetProcAddress(this.handle, p_funName);
+            var address = NativeLoader.Instance.dlsym(this.handle, p_funName);
 
             return address != IntPtr.Zero;
         }
@@ -294,7 +296,7 @@ namespace Gsof.Native
         /// <returns></returns>
         public bool HasFunction(string p_funName)
         {
-            var address = NativeMethods.GetProcAddress(this.handle, p_funName);
+            var address = NativeLoader.Instance.dlsym(this.handle, p_funName);
             return address != IntPtr.Zero;
         }
 
@@ -331,7 +333,7 @@ namespace Gsof.Native
                 _disposable.Dispose();
             }
 
-            return NativeMethods.FreeLibrary(handle);
+            return NativeLoader.Instance.dlclose(this.handle) > 0; 
         }
 
         public override bool IsInvalid => this.handle == IntPtr.Zero;

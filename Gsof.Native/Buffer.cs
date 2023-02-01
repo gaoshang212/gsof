@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gsof.Native.Library;
+using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -137,7 +138,7 @@ namespace Gsof.Native
                 throw new RankException();
             }
 
-            NativeMethods.CopyMemory(buffer.Point, this.Point + index, (uint)length);
+            NativeLoader.Instance.memcpy(buffer.Point, this.Point + index, (uint)length);
         }
 
         public void CopyTo(Buffer buffer, int index = 0)

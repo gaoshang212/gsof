@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace Gsof.Native.Linux
+namespace Gsof.Native.Library.Linux
 {
     [Flags]
-    public enum DLOpenFlag : uint
+    enum DLOpenFlag : uint
     {
         /// <summary>
         /// Lazy function call binding.
@@ -25,5 +25,9 @@ namespace Gsof.Native.Linux
         /// Use deep binding.
         /// </summary>
         RTLD_DEEPBIND = 0x00008,
+        /// <summary>
+        ///  The symbols defined by this shared object will be made available for symbol resolution of subsequently loaded shared objects.
+        /// </summary>
+        RTLD_GLOBAL = 0x000100,
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace Gsof.Native.Windows
+namespace Gsof.Native.Library.Windows
 {
     [Flags]
-    public enum LoadLibraryFlags : uint
+    enum LoadLibraryFlags : uint
     {
         DONT_RESOLVE_DLL_REFERENCES = 0x00000001,
         LOAD_IGNORE_CODE_AUTHZ_LEVEL = 0x00000010,
