@@ -153,14 +153,100 @@ namespace Gsof.Native
             var dir = Path.GetDirectoryName(path);
             var filename = Path.GetFileName(filepath);
 
-            string real = Path.Combine(dir, Environment.Is64BitProcess ? "x64" : "x86", filename);
+            var result = filepath;
+            do
+            {
+                result = CreateLibPath(dir, filename);
+                if (result is not null)
+                {
+                    break;
+                }
+
+                filename = CreateLibName(filename);
+                if (string.IsNullOrEmpty(filename))
+                {
+                    break;
+                }
+
+                result = CreateLibPath(dir, filename);
+                if (result is not null)
+                {
+                    break;
+                }
+
+            } while (false);
+
+            return result ?? filepath;
+        }
+
+        private string? CreateLibPath(string dir, string filename)
+        {
+            var filePath = Path.Combine(dir, filename);
+            if (File.Exists(filePath))
+            {
+                return filePath;
+            }
+
+            var dirname = this.GetLibDirName();
+
+            string real = Path.Combine(dir, dirname, filename);
 
             if (File.Exists(real))
             {
                 return real;
             }
 
-            return filepath;
+            return null;
+        }
+
+        private string? CreateLibName(string filename)
+        {
+            var osExt = this.GetLibExt();
+            if (!filename.EndsWith($".{osExt}"))
+            {
+                return $"{filename}.{osExt}";
+            }
+
+            return null;
+        }
+
+        private string GetLibDirName()
+        {
+            var dirName = "";
+            switch (NativeLoader.Arch)
+            {
+                case Enums.Architecture.X86:
+                    dirName = "x86";
+                    break;
+                case Enums.Architecture.X64:
+                    dirName = "x64";
+                    break;
+                case Enums.Architecture.Arm:
+                    dirName = "arm";
+                    break;
+                case Enums.Architecture.Arm64:
+                    dirName = "arm64";
+                    break;
+            }
+            return dirName;
+        }
+
+        private string GetLibExt()
+        {
+            var ext = "";
+            switch (NativeLoader.OSPlatform)
+            {
+                case Enums.OSPlatform.Windows:
+                    ext = "dll";
+                    break;
+                case Enums.OSPlatform.Linux:
+                    ext = "so";
+                    break;
+                case Enums.OSPlatform.OSX:
+                    ext = "dylib";
+                    break;
+            }
+            return ext;
         }
 
         private void LoadLibrary()
@@ -333,14 +419,11 @@ namespace Gsof.Native
                 _disposable.Dispose();
             }
 
-            return NativeLoader.Instance.dlclose(this.handle) > 0; 
+            return NativeLoader.Instance.dlclose(this.handle) > 0;
         }
 
         public override bool IsInvalid => this.handle == IntPtr.Zero;
 
         #endregion
-
-
-
     }
 }

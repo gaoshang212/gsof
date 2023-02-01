@@ -10,7 +10,7 @@ namespace Gsof.Native.Test
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         delegate int Test(int p_sleep);
 
-        private static string DllName = NativeLoader.OSPlatform == Enums.OSPlatform.Windows ? "Gsof.Test.Lib.dll" : "libGsof.Test.Lib.so";
+        private static string DllName = NativeLoader.OSPlatform == Enums.OSPlatform.Windows ? "Gsof.Test.Lib" : "libGsof.Test.Lib";
 
         private static string Dir = NativeLoader.IsWin ? "Windows" : "Linux";
 
