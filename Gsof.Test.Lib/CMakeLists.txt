@@ -11,3 +11,7 @@ add_library(Gsof.Test.Lib SHARED "Gsof.Test.Lib.c")
 
 
 # TODO: 如有需要，请添加测试并安装目标。
+
+
+# cmake -G "Visual Studio 17 2022"  ..
+# cmake --build . --config Release

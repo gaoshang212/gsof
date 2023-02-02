@@ -188,7 +188,7 @@ namespace Gsof.Native
                 throw new ArgumentNullException(nameof(buffer));
             }
 
-            if (index >= buffer.Length || length + index >= buffer.Length)
+            if (index >= buffer.Length || length + index > buffer.Length)
             {
                 throw new RankException();
             }
@@ -264,6 +264,27 @@ namespace Gsof.Native
             buffer?.Dispose();
         }
 
+        /// <summary>
+        /// 从字符串创建 Buffer
+        /// </summary>
+        /// <param name="p_data">字符串</param>
+        /// <param name="p_encoding">字符编码</param>
+        /// <returns></returns>
+        public static Buffer From(string p_data, Encoding p_encoding)
+        {
+            var bytes = p_encoding.GetBytes(p_data);
+            return new Buffer(bytes);
+        }
+
+        /// <summary>
+        /// 从字符串创建 Buffer，默认编码 utf8
+        /// </summary>
+        /// <param name="p_data">字符串</param>
+        /// <returns></returns>
+        public static Buffer From(string p_data)
+        {
+            return Buffer.From(p_data, Encoding.UTF8);
+        }
 
         #endregion
 
@@ -287,6 +308,8 @@ namespace Gsof.Native
         #region implicit
 
         public static implicit operator IntPtr(Buffer buffer) => buffer.Point;
+
+        //public static explicit operator IntPtr(Buffer buffer) => buffer.Point;
 
         #endregion
     }

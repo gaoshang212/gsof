@@ -2,6 +2,7 @@
 //
 
 #include <stdio.h>
+#include <string.h>
 
 #define BUILDING_DLL
 
@@ -39,4 +40,11 @@
 DLL_PUBLIC int test(int input)
 {
 	return input;
+}
+
+DLL_PUBLIC int test_ptr(unsigned char *input, int isize, unsigned char *buffer, int bsize)
+{
+	int size = isize > bsize ? bsize : isize;
+	memcpy(buffer, input, size);
+	return 123;
 }

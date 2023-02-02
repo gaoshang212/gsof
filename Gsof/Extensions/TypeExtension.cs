@@ -1,11 +1,13 @@
 ﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Gsof.Extensions
 {
     public static class TypeExtension
     {
-        public static Type?[]? GetTypes(this object?[]? p_objects)
+        public static Type?[]? GetTypes(this IEnumerable<object?> p_objects)
         {
             return p_objects?.Select(i => i?.GetType()).ToArray();
         }

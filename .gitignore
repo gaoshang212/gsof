@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+Gsof.Test.Lib/win64/
+Gsof.Test.Lib/win32/
+Gsof.Test.Lib/linux/

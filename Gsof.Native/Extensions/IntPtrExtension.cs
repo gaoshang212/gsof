@@ -82,6 +82,21 @@ namespace Gsof.Native.Extensions
             return bytes.ToIntPtr(bytes.Length + 1);
         }
 
+        /// <summary>
+        /// 字符串转为指针，默认编码 utf8
+        /// </summary>
+        /// <param name="p_data"></param>
+        /// <returns></returns>
+        public static IntPtr ToIntPtr(this string p_data)
+        {
+            return ToIntPtr(p_data, Encoding.UTF8);
+        }
+
+        //public static Buffer ToBuffer(this string p_data)
+        //{
+        //    return 
+        //}
+
         public static void Free(this IntPtr p_prt)
         {
             if (p_prt == IntPtr.Zero)

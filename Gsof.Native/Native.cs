@@ -94,7 +94,13 @@ namespace Gsof.Native
                 throw new Exception("The library can not be loaded.");
             }
 
-            var type = CreateDelegateType(p_params, p_returnType, p_calling);
+            var iparams = p_params?.Select(i =>
+            {
+                var param = i as Buffer;
+                return param != null ? param.Point : i;
+            }).ToArray();
+
+            var type = CreateDelegateType(iparams, p_returnType, p_calling);
 
             var dg = GetFunctionDelegate(type, p_funName);
             if (dg == null)
@@ -102,7 +108,7 @@ namespace Gsof.Native
                 return p_returnType?.CreateInstance();
             }
 
-            return dg.DynamicInvoke(p_params);
+            return dg.DynamicInvoke(iparams);
         }
 
         public void Call(string p_funName, params object[] p_params)
