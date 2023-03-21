@@ -52,5 +52,16 @@ namespace Gsof.Native.Test
                 Assert.AreEqual(result.ReadString(Encoding.UTF8), data);
             }
         }
+
+        [TestMethod]
+        public void ReAlloc()
+        {
+            var result = Buffer.Alloc(32);
+            result.ReAlloc(64);
+            Assert.AreEqual(result.Length, 64);
+            Marshal.WriteByte(result.Point + 63, 0x4F);
+
+            Assert.AreEqual(result.ReadByte(63), 0x4F);
+        }
     }
 }

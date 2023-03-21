@@ -55,6 +55,11 @@ namespace Gsof.Native
 
 
         #region Public
+        public void ReAlloc(int size)
+        {
+            this.Point = this.InternalReAlloc(this.Point, size);
+            this.Length = size;
+        }
 
         public byte ReadByte(int pos)
         {
@@ -220,6 +225,24 @@ namespace Gsof.Native
             IntPtr p = Marshal.AllocHGlobal(p_size);
             return p;
         }
+
+
+        /// <summary>
+        /// Alloc Memery Use AllocHGlobal
+        /// </summary>
+        /// <param name="p_size">size</param>
+        /// <returns></returns>
+        private IntPtr InternalReAlloc(IntPtr p_intPtr, int p_size)
+        {
+#if NET5_0_OR_GREATER
+            IntPtr p = Marshal.ReAllocHGlobal(p_intPtr, (IntPtr)p_size);
+#else
+            Marshal.FreeHGlobal(p_intPtr);
+            IntPtr p = this.InternalAlloc(p_size);
+#endif
+            return p;
+        }
+
 
         /// <summary>
         /// Free Point
