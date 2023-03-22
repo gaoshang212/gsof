@@ -166,5 +166,89 @@ namespace Gsof.Extensions
             Marshal.Copy(p_intPtr, buffer, 0, p_length);
             return buffer;
         }
+
+        /// <summary>
+        /// 从 IntPtr 读取 Int32 。
+        /// </summary>
+        /// <param name="p_intPtr"></param>
+        /// <returns></returns>
+        public static int ToInt(this IntPtr p_intPtr)
+        {
+            return Marshal.ReadInt32(p_intPtr);
+        }
+
+        /// <summary>
+        /// 从 IntPtr 读取 Byte 。
+        /// </summary>
+        /// <param name="p_intPtr"></param>
+        /// <returns></returns>
+        public static byte ToByte(this IntPtr p_intPtr)
+        { 
+            return Marshal.ReadByte(p_intPtr);
+        }
+
+        /// <summary>
+        /// 从 IntPtr 读取 Short 。
+        /// </summary>
+        /// <param name="p_intPtr"></param>
+        /// <returns></returns>
+        public static short ToShort(this IntPtr p_intPtr)
+        {
+            return Marshal.ReadInt16(p_intPtr);
+        }
+
+        /// <summary>
+        /// 从 IntPtr 读取 Long 。
+        /// </summary>
+        /// <param name="p_intPtr"></param>
+        /// <returns></returns>
+        public static long ToLong(this IntPtr p_intPtr)
+        {
+            return Marshal.ReadInt64(p_intPtr);
+        }
+
+        /// <summary>
+        /// 从 IntPtr 读取 IntPtr 。
+        /// </summary>
+        /// <param name="p_intPtr"></param>
+        /// <returns></returns>
+        public static IntPtr ToIntPtr(this IntPtr p_intPtr)
+        {
+            return Marshal.ReadIntPtr(p_intPtr);
+        }
+
+        /// <summary>
+        /// 从 IntPtr 读取 float 。
+        /// </summary>
+        /// <param name="p_intPtr"></param>
+        /// <returns></returns>
+        public static float ToFloat(this IntPtr p_intPtr)
+        {
+#if NET451_OR_GREATER
+            return Marshal.PtrToStructure<float>(p_intPtr);
+#else
+            var floats = new float[1];
+            Marshal.Copy(p_intPtr, floats, 0, 1);
+
+            return floats[0];
+#endif
+        }
+
+        /// <summary>
+        /// 从 IntPtr 读取 double 。
+        /// </summary>
+        /// <param name="p_intPtr"></param>
+        /// <returns></returns>
+        public static double ToDouble(this IntPtr p_intPtr)
+        {
+#if NET451_OR_GREATER
+            return Marshal.PtrToStructure<double>(p_intPtr);
+#else
+            var doubles = new double[1];
+            Marshal.Copy(p_intPtr, doubles, 0, 1);
+
+            return doubles[0];
+#endif
+        }
     }
 }
