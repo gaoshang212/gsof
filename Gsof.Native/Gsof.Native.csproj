@@ -10,7 +10,7 @@
 		<PackageProjectUrl>https://github.com/gaoshang212/gsof</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/gaoshang212/gsof.git</RepositoryUrl>
 		<AssemblyVersion>0.4.2</AssemblyVersion>
-		<VersionPrefix>0.4.2</VersionPrefix>
+		<VersionPrefix>0.4.3</VersionPrefix>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<SignAssembly>False</SignAssembly>
