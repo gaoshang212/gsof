@@ -55,7 +55,7 @@ namespace Gsof.Native.Library
             get
             {
 #if NET5_0_OR_GREATER
-                return (Enums.Architecture)RuntimeInformation.OSArchitecture;
+                return (Enums.Architecture)RuntimeInformation.ProcessArchitecture;
 #else
                 return Environment.Is64BitProcess ? Enums.Architecture.X64 : Enums.Architecture.X86;
 #endif
