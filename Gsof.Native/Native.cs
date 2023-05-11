@@ -262,14 +262,14 @@ namespace Gsof.Native
                 throw new ArgumentNullException();
             }
 
-            Console.WriteLine("file path：{0}", FileName);
+            Debug.WriteLine("file path：{0}", FileName);
 
             if (FileName.Contains(Path.DirectorySeparatorChar) && !File.Exists(FileName))
             {
                 throw new FileNotFoundException($"dll is not found.{FileName} ");
             }
 
-            Console.WriteLine("the process is {0}bit", Environment.Is64BitProcess ? 64 : 32);
+            Debug.WriteLine("the process is {0}bit", Environment.Is64BitProcess ? 64 : 32);
 
             var fileanme = Path.GetFullPath(FileName);
 
